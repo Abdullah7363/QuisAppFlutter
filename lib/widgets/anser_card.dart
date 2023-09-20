@@ -18,7 +18,7 @@ class AnserCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return   Container(
-          height: 400,
+          height: 200,
           margin: const EdgeInsets.symmetric(horizontal: 20.0),
           decoration: BoxDecoration(
             color: Colors.white,

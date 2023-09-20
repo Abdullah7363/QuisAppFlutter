@@ -16,7 +16,7 @@ class AnswerOption extends StatelessWidget {
   final int index;
   final int questionId;
   final Function() onPressed;
-//هنا الويدجت بتاععت الاجابات
+//هنا الويدجت  الاجابات
   @override
   Widget build(BuildContext context) {
     return GetBuilder<QuizController>(
@@ -24,6 +24,7 @@ class AnswerOption extends StatelessWidget {
       builder: (controller) => InkWell(
           onTap: controller.checkIsQuestionAnswered(questionId) ? null : onPressed,
           child: Container(
+            alignment: Alignment.center,
             width: double.infinity,
            
             decoration: BoxDecoration(
@@ -32,24 +33,33 @@ class AnswerOption extends StatelessWidget {
                 border:
                     Border.all(width: 3, color: controller.getColor(index))),
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
+              
+              padding: const EdgeInsets.all(10),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  RichText(
-                    text: TextSpan(
-                        text: '${index + 1}. ',
-                        style: Theme.of(context).textTheme.headline6,
-                        children: [
-                          TextSpan(
-                            text: text,
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                        ]),
-                  ),
+                  Text(text.toString()),
+                  SizedBox(width: 10,),
+                  
+                                    Text("${index+1}"),
+
+
+                  // RichText(
+                  //   text: TextSpan(
+                  //       // text: '${index + 1}. ',
+                  //       style: sTheme.of(context).textTheme.headline6,
+                  //       children: [
+                  //         TextSpan(
+                  //           text: text,
+                  //           style: Theme.of(context).textTheme.headline6,
+                  //         ),
+                  //       ]),
+                  // ),
                   if (controller.checkIsQuestionAnswered(questionId) &&
                       controller.selectAnswer == index)
                     Container(
+                      
                         width: 30,
                         height: 30,
                         padding: EdgeInsets.zero,

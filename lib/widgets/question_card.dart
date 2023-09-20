@@ -17,7 +17,7 @@ class QuestionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-          height: 400,
+          height: 500,
           margin: const EdgeInsets.symmetric(horizontal: 20.0),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -45,9 +45,9 @@ class QuestionCard extends StatelessWidget {
                                 text: questionModel.options[index],
                                 index: index,
                                 onPressed: () => Get.find<QuizController>()
-                                    .checkAnswer(questionModel, index)),
+                                    .checkAnswer(questionModel, index) ),
                             const SizedBox(
-                              height: 15,
+                              height: 10,
                             )
                           ],
                         )),

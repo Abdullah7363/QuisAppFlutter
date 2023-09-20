@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       home:  const Directionality(
         textDirection: TextDirection.rtl,
         
-        child: ResultScreen()),
+        child: WelcomeScreen()),
       getPages: [
          GetPage(name: WelcomeScreen.routeName, page: () => const WelcomeScreen()),
          GetPage(name: QuizScreen.routeName, page: () =>  const QuizScreen()),

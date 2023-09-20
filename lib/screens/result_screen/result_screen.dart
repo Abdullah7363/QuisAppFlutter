@@ -20,20 +20,37 @@ class ResultScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 200,
-                  color: Colors.orange,
+                  height: 240,
                   width: double.infinity,
+                  decoration: const BoxDecoration(
+                                      color: Colors.orange,
+                                      borderRadius: BorderRadius.only(bottomRight: Radius.circular(20),
+                                      bottomLeft:Radius.circular(20) )
+
+
+
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(Icons.person,size: 50,),
-                      Text(
-                        'كمبروك  ${controller.name} ',
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
-                              color: Colors.black,
-                            ),
-                            
 
+                    children: [
+                      SizedBox(height: 10,),
+                      Image.asset("images/cup.png",height: 150,width: 178,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(width: 2,),
+                          Text(
+                            '  ${controller.name}  ',
+                            style: Theme.of(context).textTheme.headline3!.copyWith(
+                                  color: Colors.black,
+                                ),
+                                
+
+                          ),
+                                                    Text("مبروك",style: TextStyle(fontSize: 40),),
+
+                        ],
                       ),
                     ],
                   ),
@@ -42,28 +59,36 @@ class ResultScreen extends StatelessWidget {
                
                 Container(
                   height: 250,
-                  width: 250,
+                  width: 300,
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 64, 182, 241),
                     borderRadius: BorderRadius.circular(20)),
                 
                     child: Column(
                       children: [
-                        ListTile(
-                          leading: Icon(Icons.star),
-                          title:
+                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                           children: [
+                                                          Icon(Icons.star,color: Colors.orange,),
+                                                          SizedBox(width: 10,),
+
+                            
+                             Text(
+                                'النتيجة   ',
+                                style: Theme.of(context).textTheme.headline4!.copyWith(
+                                      color: Colors.white,
+                                    ),
+                              ),
+                           ],
+                         ),
+                        
                   
-                           Text(
-                            'النتجية   ',
-                            style: Theme.of(context).textTheme.headline4!.copyWith(
-                                  color: Colors.white,
-                                ),
-                          ),
-                        ),
+                          
+                        
                          Text(
                   '${controller.scoreResult.round()} /100',
                   style: Theme.of(context).textTheme.headline3!.copyWith(
-                        color: Colors.orange,
+                        color: Colors.white,
                       ),
                 ),
 
@@ -88,10 +113,7 @@ class ResultScreen extends StatelessWidget {
 
                         onPressed: () => controller.startAgain(),
                         text: 'ابدا مرة اخرى'),
-                           CustomButton(
-
-                        onPressed: () => controller.startAgain(),
-                        text: '  الرجوع القائمة'),
+                        
                   ],
                 ),
               ],

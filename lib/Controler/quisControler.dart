@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:quisapp/model/quationmodel.dart';
 import 'package:quisapp/screens/result_screen/result_screen.dart';
 import 'package:quisapp/screens/welcome_screen.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class QuizController extends GetxController{
   String name = '';
@@ -18,67 +19,69 @@ class QuizController extends GetxController{
       question:
           "من العالم الذي إخترع المصباح الكهربائي ؟",
   
-      answer: 2,
+      answer: 1,
       options: ['نيكولا تسلا ', 'توماس اديسون  ', 'آينشتاين  ', 'هنري فورد   '],
     ),
     QuestionModel(
       id: 2,
-      question: "من هو الطائر صاحب أقوى حاسة بصرية؟",
-
+      question: "اكبر دولة افريقية من حيث المساحة هي دولة …؟",
       answer: 1,
-      options: ['البومة', 'الصقر', 'النسر', 'العصفور'],
+      options: ['مصر ', 'السودان', 'مورتانيا ', 'الجزائر '],
     ),
     QuestionModel(
       id: 3,
-      question: "من هو الطائر صاحب أقوى حاسة بصرية؟",
+      question: "     ما هو أطول نهر في العالم؟  ",
 
-      answer: 1,
-      options: ['البومة', 'الصقر', 'النسر', 'العصفور'],
+      answer: 0,
+      options: ['نهر الأمازون', 'نهرالفرات ', 'نهر النيل', 'نهر النيل'],
     ),
     QuestionModel(
       id: 4,
-      question: "من هو الطائر صاحب أقوى حاسة بصرية؟",
+      question: "    من قائد المسلمين في معركة القادسية؟ " ,
 
-      answer: 1,
-      options: ['البومة', 'الصقر', 'النسر', 'العصفور'],
+      answer: 3,
+      options: ['شرحبيل بن حسنة', 'عمرو بن العاص', 'خالد بن الوليد', 'سعد بن أبي وقاص'],
     ),
     QuestionModel(
       id: 5,
-      question: "من هو الطائر صاحب أقوى حاسة بصرية؟",
+      question: "    ما أكثر سورة تكرر فيها أسم الرحمن؟       ",
 
       answer: 1,
-      options: ['البومة', 'الصقر', 'النسر', 'العصفور'],
+      options: ['سورة الرحمن', 'سورة مريم', 'سورة آل عمران', 'سورة البقرة'],
     ),
     QuestionModel(
       id: 6,
-      question: "Real Name of ahmed sherif",
-      answer: 2,
-      options: ['ahmed sherif', 'sherif', 'Haytham', 'NONE OF ABOVE'],
+      question: "انتهت الدولة الأموية على يد …؟",
+      answer: 3,
+      options: ['الدولة العثمانية', 'الدولة المملوكية', 'الدولة المغولية', 'الدولة العباسية'],
     ),
     QuestionModel(
       id: 7,
-      question: "Sherif love",
+      question: "ما السورة التي ختمت باسم وقت من أوقات الصلاة",
       answer: 3,
-      options: ['Pharma', 'Micro', 'Medicnal', 'NONE OF ABOVE'],
+      options: ['سورة البلد', 'سورة الفجر', 'سورة الاعلى', 'سورة القدر'],
     ),
     QuestionModel(
       id: 8,
-      question: "hello",
-      answer: 3,
-      options: ['hello', 'hi', 'hola', 'Suiiiiiiiiiiii'],
+      question: "ما هو العضو الذي ينتج كريات الدم الحمراء في جسم الإنسان؟",
+      answer: 2,
+      options: ['الرئة', 'المعدة', 'الطحال', 'الكبد'],
     ),
     QuestionModel(
       id: 9,
       question:
-      "Best Channel for Flutter ",
-      answer: 2,
-      options: ['Sec it', 'Sec it developer', 'sec it developers', 'mesh sec it '],
+      "كم عدد أرجل الخنفساء؟",
+ 
+      answer: 0,
+      options: [' ست ارجل', 'ثمان ارجل ', 'رجلين  ', 'اربع ارجل   '],
     ),
     QuestionModel(
       id: 10,
-      question: "Best State Mangment Ststem is ",
+      question:  "كم تبلغ قوة إبصار الصقر مقارنة بالإنسان؟",
+
+
       answer: 1,
-      options: ['BloC', 'GetX', 'Provider', 'riverPod'],
+      options: [' عشرة اضعاف', ' ثمانية اضعاف', '   اربع اضعاف', 'ضعفين'],
     ),
   ];
 
@@ -107,6 +110,14 @@ class QuizController extends GetxController{
 
 
   int _countOfCorrectAnswers = 0;
+    final ply=AudioPlayer();
+
+  static const   tick="tick.mp3";
+  static const   good="done.mp3";
+  static const   wrong="fail.mp3";
+
+
+  
 
 
   int get countOfCorrectAnswers => _countOfCorrectAnswers;
@@ -156,8 +167,10 @@ class QuizController extends GetxController{
 
     if (_correctAnswer == _selectAnswer) {
       _countOfCorrectAnswers++;
+
     }
     stopTimer();
+    ply.stop();
     _questionIsAnswerd.update(questionModel.id, (value) => true);
     Future.delayed(const Duration(milliseconds: 500)).then((value) => nextQuestion());
     update();
@@ -171,8 +184,12 @@ class QuizController extends GetxController{
   }
 
   void nextQuestion() {
-    if (_timer != null || _timer!.isActive) {
+    if (
+
+      _timer != null || _timer!.isActive) {
+
       stopTimer();
+      ply.stop();
     }
 
     if (pageController.page == _questionsList.length - 1) {
@@ -183,6 +200,7 @@ class QuizController extends GetxController{
           duration: const Duration(milliseconds: 500), curve: Curves.linear);
 
       startTimer();
+      
     }
     _numberOfQuestion = pageController.page! + 2;
     update();
@@ -233,6 +251,39 @@ class QuizController extends GetxController{
       }
     });
   }
+
+  Future<void> getSound(int ansindex){
+    if (_isPressed){
+      if (ansindex==_correctAnswer){
+        return ply.play(AssetSource(good));
+
+
+      }
+      else if (ansindex==_selectAnswer && _selectAnswer==_correctAnswer ){
+        return ply.play(AssetSource(wrong));
+      }
+
+
+
+
+    }
+    return ply.stop();
+
+   
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   void resetTimer() => _sec.value = maxSec;
 

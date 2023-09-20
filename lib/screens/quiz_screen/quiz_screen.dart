@@ -20,7 +20,6 @@ class QuizScreen extends StatelessWidget {
       //   backgroundColor: Colors.transparent,
       // ),
       body: Stack(
-        alignment: Alignment.topCenter,
         children: [
           Container(
             decoration: const BoxDecoration(
@@ -38,6 +37,9 @@ class QuizScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
+                                                    ProgressTimer(),
+                                                    SizedBox(width: 130,),
+
                       RichText(
                         text: TextSpan(
                             text: 'السؤال ',
@@ -70,10 +72,10 @@ class QuizScreen extends StatelessWidget {
                             
                             ]),
                       ),
+
                     ],
                     
                   ),
-                                                              ProgressTimer(),
                                                               SizedBox(height: 1),
 
                   SizedBox(
@@ -101,6 +103,7 @@ class QuizScreen extends StatelessWidget {
       floatingActionButton: GetBuilder<QuizController>(
         init: QuizController(),
         builder: (controller) => CustomButton(
+          
             onPressed: () => controller.nextQuestion(), text: 'التالي'),
       ),
     );

@@ -21,14 +21,13 @@ class CustomButton extends StatelessWidget {
       ),
       child: FloatingActionButton.extended(
         backgroundColor: Colors.orangeAccent,
-        icon: Icon(Icons.arrow_forward_ios),
         onPressed: onPressed,
         label: Text(
           text,
           style: Theme.of(context)
               .textTheme
               .headline6!
-              .copyWith(color: Colors.white),
+              .copyWith(color: Colors.white,fontSize: 25,fontStyle: FontStyle.italic),
         ),
       ),
     );

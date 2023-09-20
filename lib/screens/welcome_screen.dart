@@ -36,28 +36,39 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 78, 132, 250),
         resizeToAvoidBottomInset: false,
        extendBody: true,
-        body: Container(
-          constraints: BoxConstraints.expand(),
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('images/m.jpg'),
-                fit: BoxFit.cover),
-          ),
+        body: SafeArea(
           child: Stack(
             children: [
-              Image.asset("images/m.jpg"),
               
               Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.all(10),
                 child: Column(
+        
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Spacer(
-                      flex: 2,
-                    ),
+              Positioned(
+                left: 10,
+                top: 20,
+                
+                
+                child: Center(
+                  child: CircleAvatar(
+                    
+                    radius: 100,
+                    
+                    
+                    
+                    backgroundImage: AssetImage("images/m.jpg")),
+                )
+
+                
+                ),
+        
+                   
                     // const Center(
                     //   child: Text(
                     //     'مرحيا بك في برنامج التحدي',
@@ -70,21 +81,23 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       style: Theme.of(context)
                           .textTheme
                           .headline6!
-                          .copyWith(color: Colors.black),
+                          .copyWith(color: Colors.white,fontSize: 30,),
                     ),
-                    const Spacer(
-                      flex: 1,
-                    ),
+                    SizedBox(height: 8,),
+                 
                     Form(
                       key: _formkey,
                       child: GetBuilder<QuizController>(
                         init: Get.find<QuizController>(),
                         builder: (controller) => TextFormField(
+                          textDirection: TextDirection.rtl,
                           controller: _nameController,
                           style: const TextStyle(color: Colors.black),
                           decoration: const InputDecoration(
                               labelText: 'الاسم ',
-                              labelStyle: TextStyle(color: Colors.white),
+                              
+                              
+                              labelStyle: TextStyle(color: Colors.white,),
                               border: OutlineInputBorder(
                                   borderSide: BorderSide(width: 3),
                                   borderRadius:
@@ -101,17 +114,21 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           },
                           onFieldSubmitted: (_) => _submit(context),
                         ),
+                        
                       ),
+                      
                     ),
-                    const Spacer(
-                      flex: 1,
-                    ),
+                                                            SizedBox(height: 150,),
+
+
+                
                     Align(
+                      
                       alignment: Alignment.center,
                       child: CustomButton(
                           width: double.infinity,
                           onPressed: () => _submit(context),
-                          text: 'ابدا '),
+                          text: 'ابدا ',),
                     ),
                     const Spacer(
                       flex: 2,
